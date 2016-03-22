@@ -1,0 +1,51 @@
+[
+ {"method": "POST",
+  "command": "/containers/create?name=first",
+  "request":
+          { "control": [],
+            "data": {"Image":"test456:v1"}
+           },
+  "response":
+        { "control": [],
+          "status": "404",
+          "data": "No such image: test456:v1"
+        }
+ },
+ {"method": "POST",
+  "command": "/containers/create?name=first",
+  "request":
+          { "control": [],
+            "data": {"Image":"busybox"}
+           },
+  "response":
+        { "control": [],
+          "status": "201",
+          "data": {"Id":">>>CONTROL: mask, store(uuid)", "Warnings":null}
+        }
+ },
+    {"method": "GET",
+      "command": "/containers/json?all=1",
+      "request":
+        { 
+        },
+      "response":
+        { "control": [],
+          "status": "123",
+          "data": [
+          {"Id":">>>CONTROL: replace(uuid)",
+           "Names":["/first"],
+           "Image":"busybox",
+           "Command":"sh",
+           "Created":">>>CONTROL: mask",
+           "Ports":">>>CONTROL: mask",
+           "Labels":{},
+           "Status":"Created",
+           "HostConfig":">>>CONTROL: mask",
+           "ImageID":">>>CONTROL: mask",
+           "NetworkSettings":">>>CONTROL: mask",
+           "State":"created",
+           "Mounts":[]}
+          ]
+        }
+    }
+]
